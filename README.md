@@ -3,13 +3,13 @@
 A Django Application to make it easy to add Simple (Image) Advertisements to your project.
 
 Each Ad has:
-- a **title**
-- a **URL** to redirect to
-- an **image** to be displayed in the template as a link
-- **start & end dates**
-- and a **weight** relative to other Ads in the same zone. The higher the weight, the more frequently the Ad will be displayed.
+- a `title`
+- a `url` to redirect to
+- an `image` to be displayed in the template as a link
+- a `start_date` and `end_date`
+- and a `weight` relative to other Ads in the same zone. The higher the weight, the more frequently the Ad will be displayed.
 
-Each time an Ad is displayed an **Impression** will be saved to the database about it with session id and source ip address, and each time it will be clicked a **click** will be saved in the database about it with the same info.
+Each time an Ad is displayed, an `Impression` will be saved to the database about it with session id and source ip address, and each time it will be clicked a `click` will be saved in the database about it with the same info.
 
 ## Installation
 
