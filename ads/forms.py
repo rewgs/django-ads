@@ -1,9 +1,15 @@
 from __future__ import unicode_literals
 
+from .helpers import get_django_version
+
 from django import forms
 from django.conf import settings
 from django.core.files.images import get_image_dimensions
-from django.utils.translation import ugettext as _
+# NOTE: Fixed for fork
+if get_django_version() <= 2:
+    from django.utils.translation import ugettext_lazy as _
+else:
+    from django.utils.translation import gettext_lazy as _
 
 
 class AdImageInlineForm(forms.ModelForm):

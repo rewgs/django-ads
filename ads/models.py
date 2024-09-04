@@ -1,11 +1,19 @@
 from __future__ import unicode_literals
 
+from .helpers import get_django_version
+
 from django.core.validators import MinValueValidator
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
-from django.utils.encoding import force_text
-from django.utils.translation import ugettext_lazy as _
+
+# NOTE: Fixed for fork
+if get_django_version() <= 2:
+    from django.utils.encoding import force_text
+    from django.utils.translation import ugettext_lazy as _
+else:
+    from django.utils.encoding import force_bytes
+    from django.utils.translation import gettext_lazy as _
 
 from ads.conf import settings
 from ads.managers import AdManager
@@ -145,9 +153,12 @@ class Impression(models.Model):
     class Meta:
         verbose_name = _('Ad Impression')
         verbose_name_plural = _('Ad Impressions')
-        index_together = (
-            ('ad', 'session_id', )
-        )
+        # FIXME:
+        # This is throwing an error while trying to run the dev server.
+        # Will fix later.
+        # index_together = (
+        #     ('ad', 'session_id', )
+        # )
 
     def __str__(self):
         return force_text(self.ad)
@@ -171,9 +182,12 @@ class Click(models.Model):
     class Meta:
         verbose_name = _('Ad Click')
         verbose_name_plural = _('Ad Clicks')
-        index_together = (
-            ('ad', 'session_id', )
-        )
+        # FIXME:
+        # This is throwing an error while trying to run the dev server.
+        # Will fix later.
+        # index_together = (
+        #     ('ad', 'session_id', )
+        # )
 
     def __str__(self):
         return force_text(self.ad)
